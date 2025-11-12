@@ -10,8 +10,12 @@ app.get('/herois/:id', function(req, res){
     res.send(herois[id-1])
 })
 
-app.post('/herois', (req, res) => {
-    console.dir(req.body)
+app.use(express.json())
+app.post('/herois', function (req, res) {
+    let novoHeroi = req.body.nome
+    herois.push(novoHeroi)
+    res.send('ok')
 })
+ 
 
 app.listen(3000)
